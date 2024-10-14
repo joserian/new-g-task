@@ -1,0 +1,70 @@
+* {
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-family: "Noto Sans";
+}
+
+html, body {
+    width:100%;
+    height:100%;
+    
+}
+
+/*VARIABLES*/
+:root {
+    --border-light: 5px;
+    --border-normal: 10px;
+    --border-heavy: 20px;
+}
+
+/*PRIMARY CONTAINER STYLE CONFIG*/
+#primary-container {
+    background-color:#fff; padding:30px; border-radius: var(--border-normal); margin:20px auto; width: 600px; min-height:400px; filter: drop-shadow(0px 0px 1px black)
+}
+
+
+/*OPTIONS STYLE CONFIG*/
+#title-g-task {
+    font-size:2em;
+}
+
+#title-input {
+    padding:8px 12px; border-radius:var(--border-normal); border: 1px solid black; 
+}
+
+#create-task-button {
+    color:blue; background-color: transparent; padding:10px; border-radius:var(--border-heavy); border: 1px solid blue; transition: background-color 0.1s ease;
+}
+
+#create-task-button:hover {
+    background-color: azure; cursor:pointer;
+}
+
+
+/*TASK BAR STYLE CONFIG*/
+#task-bar {
+    background-color:gray; width:100%; height:30px; margin-block:10px; border-radius: var(--border-light)
+}
+
+
+/*TASK STYLE CONFIG*/
+.bar {
+    display: flex; align-items:center; justify-content: space-between; margin-bottom: 5px;
+}
+
+.task {
+    background-color:gray; padding:10px; border-radius:var(--border-light); 
+}
+
+.remove-button {
+    background-color:white; border-radius: var(--border-heavy); border: 1px solid red; color:red; padding:7px;
+}
+
+.description {
+    min-width:100%; max-width:100%; min-height:50px; height:fit-content; padding:5px; border-radius: var(--border-light); border: 1px solid gray; outline: none;
+}
+
+.description:focus {
+    border-color: black;
+}

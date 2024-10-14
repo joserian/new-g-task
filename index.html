@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>G task</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body hidden>
+    <div id="primary-container">
+        <div id="title-g-task">G task</div>
+
+        <div id="options">
+            <label for="title-input">Escreva um titulo para sua tarefa</label>
+            <input type="text" id="title-input">
+            <br>
+            <div>
+                <button id="create-task-button">Criar tarefa</button>
+            </div>
+        </div>
+        <br>
+
+        <div id="task-bar">
+            <button id="sort">ordenar por nome</button>
+        </div>
+
+
+        <div id="task-area">
+            <div class="task">
+                <div class="bar"><div><span class="title">titulo</span> <span>data</span></div><button class="remove-button">excluir</button></div>
+                <div>
+                    <textarea class="description" name=""></textarea>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        //show the document on ready state
+        document.addEventListener("readystatechange", () => {
+            document.body.style.display = "block";
+        })
+
+        //create task
+        const taskArea = document.getElementById("task-area");
+        const createTask = document.getElementById("create-task-button");
+
+
+        function addTask() {
+            const title = document.getElementById("title-input");
+
+            const taskModel = 
+            `<br>
+            <div class="task">
+                <div class="bar"><div><span class="title">${title.value}</span> <span>data</span></div><button class="remove-button">excluir</button></div>
+                <div>
+                    <textarea class="description" name="" id=""></textarea>
+                </div>
+            </div>`
+            ;
+
+            taskArea.innerHTML += taskModel;
+            // title.value = "";
+        }
+
+        createTask.addEventListener("click", () => {
+            addTask();
+        });
+
+        //sorting
+        const sort = document.getElementById("sort");
+
+        sort.addEventListener("click", () => {
+            var titles = document.querySelectorAll(".task");
+
+            var a = [];
+
+            for(var i = 0; i < titles.length; i++) {
+                a[a.length] = titles[i];
+                
+            }
+
+
+            taskArea.innerHTML = "";
+
+            for(var i = 0; i < a.length; i++) {
+                console.log(i)
+                const t = a[i].getElementsByClassName("title")[0].textContent
+            }
+
+
+            a.forEach(title => {
+                taskArea.append(title);
+            })
+            
+
+        })
+
+
+
+    </script>
+</body>
+</html>
