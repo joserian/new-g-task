@@ -44,7 +44,7 @@ html, body {
 
 /*TASK BAR STYLE CONFIG*/
 #task-bar {
-    background-color:gray; width:100%; height:30px; margin-block:10px; border-radius: var(--border-light)
+    background-color:gray; width:100%; height:30px; border-radius: var(--border-light); margin-bottom:30px;
 }
 
 
@@ -54,7 +54,7 @@ html, body {
 }
 
 .task {
-    background-color:gray; padding:10px; border-radius:var(--border-light); 
+    background-color:gray; padding:10px; border-radius:var(--border-light); margin-top:10px;
 }
 
 .remove-button {

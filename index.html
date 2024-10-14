@@ -51,7 +51,7 @@
             const title = document.getElementById("title-input");
 
             const taskModel = 
-            `<br>
+            `
             <div class="task">
                 <div class="bar"><div><span class="title">${title.value}</span> <span>data</span></div><button class="remove-button">excluir</button></div>
                 <div>
@@ -72,32 +72,37 @@
         const sort = document.getElementById("sort");
 
         sort.addEventListener("click", () => {
-            var titles = document.querySelectorAll(".task");
+            const tasks = document.querySelectorAll(".task");
 
-            var a = [];
-
-            for(var i = 0; i < titles.length; i++) {
-                a[a.length] = titles[i];
-                
-            }
+            //nodelist to array
+            var taskSorted = [];
+            tasks.forEach(task => taskSorted[taskSorted.length] = task);
 
 
+            //clear the task area
             taskArea.innerHTML = "";
 
-            for(var i = 0; i < a.length; i++) {
-                console.log(i)
-                const t = a[i].getElementsByClassName("title")[0].textContent
+            //sorting by name
+            for(var i = 0; i < taskSorted.length; i++) {
+                for(var j = 0; j < taskSorted.length-1; j++) {
+                    const t = taskSorted[j].getElementsByClassName("title")[0].textContent;
+                    const t2 = taskSorted[j+1].getElementsByClassName("title")[0].textContent;
+                    if(t > t2) {
+                        const n = taskSorted[j];
+                        taskSorted[j] = taskSorted[j+1];
+                        taskSorted[j+1] = n;
+                    }
+
+                }
             }
 
-
-            a.forEach(title => {
+            //add task sorted on task area
+            taskSorted.forEach(title => {
                 taskArea.append(title);
             })
             
 
         })
-
-
 
     </script>
 </body>
