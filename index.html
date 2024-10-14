@@ -62,6 +62,8 @@
 
             taskArea.innerHTML += taskModel;
             // title.value = "";
+
+            removeButton();
         }
 
         createTask.addEventListener("click", () => {
@@ -99,11 +101,21 @@
             //add task sorted on task area
             taskSorted.forEach(title => {
                 taskArea.append(title);
-            })
-            
+            });
+        });
 
-        })
+        //remove
+        function removeButton() {
+            const remove = document.querySelectorAll(".remove-button");
 
+            remove.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    btn.parentNode.parentNode.remove();
+                })
+            });
+        }
+
+        removeButton();
     </script>
 </body>
 </html>
