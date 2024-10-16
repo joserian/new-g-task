@@ -13,6 +13,7 @@
         <div id="options">
             <label for="title-input">Escreva um titulo para sua tarefa</label>
             <input type="text" id="title-input">
+            <input type="date" name="" id="final-date-input" value="19/02/2005">
             <br>
             <div>
                 <button id="create-task-button">Criar tarefa</button>
@@ -22,12 +23,13 @@
 
         <div id="task-bar">
             <button id="sort">ordenar por nome</button>
+            <select name="" id=""></select>
         </div>
 
 
         <div id="task-area">
             <div class="task">
-                <div class="bar"><div><span class="title">titulo</span> <span>data</span></div><button class="remove-button">excluir</button></div>
+                <div class="bar"><div><span class="title">titulo</span> <span class="final-date">data</span></div><button class="remove-button">excluir</button></div>
                 <div>
                     <textarea class="description" name=""></textarea>
                 </div>
@@ -46,14 +48,15 @@
         const taskArea = document.getElementById("task-area");
         const createTask = document.getElementById("create-task-button");
 
-
+            //function add task when create button was pressed
         function addTask() {
             const title = document.getElementById("title-input");
+            const finalDate = document.getElementById("final-date-input");
 
             const taskModel = 
             `
             <div class="task">
-                <div class="bar"><div><span class="title">${title.value}</span> <span>data</span></div><button class="remove-button">excluir</button></div>
+                <div class="bar"><div><span class="title">${title.value}</span> <span class="final-date">${finalDate.value}</span></div><button class="remove-button">excluir</button></div>
                 <div>
                     <textarea class="description" name="" id=""></textarea>
                 </div>
@@ -61,8 +64,9 @@
             ;
 
             taskArea.innerHTML += taskModel;
+            addLocal(taskModel);
             // title.value = "";
-
+            // finalDate.value = "";
             removeButton();
         }
 
@@ -73,7 +77,8 @@
         //sorting
         const sort = document.getElementById("sort");
 
-        sort.addEventListener("click", () => {
+            //type of sort
+        function sortingBy(mode) { //mode: title, final-date
             const tasks = document.querySelectorAll(".task");
 
             //nodelist to array
@@ -87,8 +92,8 @@
             //sorting by name
             for(var i = 0; i < taskSorted.length; i++) {
                 for(var j = 0; j < taskSorted.length-1; j++) {
-                    const t = taskSorted[j].getElementsByClassName("title")[0].textContent;
-                    const t2 = taskSorted[j+1].getElementsByClassName("title")[0].textContent;
+                    const t = taskSorted[j].getElementsByClassName(mode)[0].textContent;
+                    const t2 = taskSorted[j+1].getElementsByClassName(mode)[0].textContent;
                     if(t > t2) {
                         const n = taskSorted[j];
                         taskSorted[j] = taskSorted[j+1];
@@ -102,6 +107,10 @@
             taskSorted.forEach(title => {
                 taskArea.append(title);
             });
+        }
+
+        sort.addEventListener("click", () => {
+            sortingBy("title")
         });
 
         //remove
@@ -115,7 +124,31 @@
             });
         }
 
+        //local storage
+        var allTasks = getLocal() ?? [];
+
+            //add tasks into box
+        allTasks.forEach(task => {
+            taskArea.innerHTML += task;
+        });
+
         removeButton();
+        
+        function getLocal() {
+            const local = JSON.parse(localStorage.getItem("tasks"));
+            return local;
+        }
+
+        function addLocal(element) {
+            allTasks[allTasks.length] = element;
+            localStorage.setItem("tasks", JSON.stringify(allTasks));
+        }
+
+        function clearLocal() {
+            localStorage.clear("tasks");
+        }
+
+
     </script>
 </body>
 </html>
